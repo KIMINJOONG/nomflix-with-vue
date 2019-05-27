@@ -1,19 +1,19 @@
 <template>
-    <router-link>
+    <router-link route :to="{path: '/detail/12'}">
         <div class="Container">
             <div class="ImageContainer">
-                <div class="Image">
+                <div class="Image" v-bind:style="{ backgroundImage: 'url(' + imageUrl + ')' }">
 
                 </div>
                 <span class="Rating">
                     <span role="img" aria-label="rating">
                         ⭐️
                     </span>
-                    10/10
+                    {{rating}}/10
                 </span>
             </div>
             <span class="Title">
-
+            {{title}}
             </span>
             <span class="Year">
 
@@ -34,7 +34,6 @@
         font-size: 12px;
     }
     .Image{
-        background-image: url();
         height: 180px;
         background-size: cover;
         border-radius: 4px;

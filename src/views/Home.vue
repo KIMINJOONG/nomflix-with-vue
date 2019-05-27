@@ -1,19 +1,31 @@
 <template>
   <div class="home">
-
-    <h1>{{home}}</h1>
-    <p>{{nowPlaying}}</p>
-    <p>{{upcoming}}</p>
-    <p>{{popular}}</p>
+      <div class="Container">
+        <span class="Title"></span>
+        <div class="Grid">
+          <Poster
+            v-for="(now, index) in nowPlaying"
+            v-bind:key="index"
+            :title="now.title"
+            :rating="now.rating"
+            :year="now.year"
+            :isMovie="true"
+            :imageUrl="now.poster_path"
+          />
+        </div>
+      </div>
   </div>
 </template>
 
 <script>
 import {mapState} from "vuex";
+import Poster from "../components/Poster";
 export default {
-  name: 'home',
+  components: {
+    Poster
+  },
   data: () => ({
-    home : "Hello home"
+    title : "영화 목록",
   }),
   computed:{
     ...mapState(["nowPlaying", "upcoming", "popular"])
@@ -23,3 +35,18 @@ export default {
   }
 }
 </script>
+<style scoped>
+  .Container{
+    margin-bottom: 50px;
+  }
+  .Title{
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .Grid{
+    margin-top: 25px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 125px);
+    grid-gap: 25px;
+  }
+</style>
