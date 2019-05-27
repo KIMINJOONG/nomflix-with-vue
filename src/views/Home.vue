@@ -3,6 +3,8 @@
 
     <h1 @click="getMovie">{{home}}</h1>
     <p>{{nowPlaying}}</p>
+    <p>{{upcoming}}</p>
+    <p>{{popular}}</p>
   </div>
 </template>
 
@@ -14,7 +16,7 @@ export default {
     home : "Hello home"
   }),
   computed:{
-    ...mapState(["nowPlaying"])
+    ...mapState(["nowPlaying", "upcoming", "popular"])
   },
   methods:{
     ...mapActions(["getMovie"])

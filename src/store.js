@@ -14,20 +14,36 @@ export default new Vuex.Store({
   },
   mutations: {
     getMovie(state, payload){
-      state.nowPlaying = payload
+      state.nowPlaying = payload.nowPlaying;
+      state.upcoming = payload.upcoming;
+      state.popular = payload.popular;
     }
   },
   actions: {
     async getMovie({commit}) {
-      let nowPlaying;
+      let movies = null;
+      let nowPlaying, upcoming, popular;
       try{
         ({
           data: {results : nowPlaying}
         } = await moviesApi.nowPlaying());
+
+        ({
+          data: {results : upcoming}
+        } = await moviesApi.upcoming());
+
+        ({
+          data: {results : popular}
+        } = await moviesApi.popular());
       }catch(e){
         console.log(e);
       }
-      commit("getMovie", nowPlaying);
+      movies = {
+        nowPlaying,
+        upcoming,
+        popular
+      }
+      commit("getMovie", movies);
     }
   }
 })

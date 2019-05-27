@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>{{a}}</h1>
+        <h1>{{tv}}</h1>
     </div>
 </template>
 
@@ -8,7 +8,7 @@
 export default {
     name: "tv",
     data : () => ({
-        a: "Hello Tv"
+        tv: "Hello Tv"
     })
 }
 </script>
