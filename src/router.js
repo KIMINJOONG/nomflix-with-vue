@@ -10,30 +10,37 @@ export default new Router({
     {
       path: '/',
       name: 'home',
+      beforeEnter:(to, from ,next) => {
+        document.title = "nomflix | movie";
+        next();
+      },
       component: () => import(/* webpackChunkName: "about" */ './views/Home.vue')
     },
     {
       path: '/tv',
       name: 'tv',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
+      beforeEnter:(to, from ,next) => {
+        document.title = "nomflix | tv";
+        next();
+      },
       component: () => import(/* webpackChunkName: "about" */ './views/Tv.vue')
     },
     {
       path: '/search',
       name: 'search',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
+      beforeEnter:(to, from ,next) => {
+        document.title = "nomflix | search";
+        next();
+      },
       component: () => import(/* webpackChunkName: "about" */ './views/Search.vue')
     },
     {
       path: '/detail/:id',
       name: 'detail',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
+      beforeEnter:(to, from ,next) => {
+        document.title = "nomflix | detail";
+        next();
+      },
       component: () => import(/* webpackChunkName: "about" */ './views/Detail.vue')
     }
   ]

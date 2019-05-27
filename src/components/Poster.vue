@@ -3,7 +3,6 @@
         <div class="Container">
             <div class="ImageContainer">
                 <div class="Image" :style="{ 'background-image': 'url(https://image.tmdb.org/t/p/w300' + imageUrl + ')' }">
-
                 </div>
                 <span class="Rating">
                     <span role="img" aria-label="rating">
