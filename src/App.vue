@@ -3,13 +3,13 @@
     <div id="nav">
       <ul id="List">
         <li class="Item">
-          <router-link to="/" class="SLink">Home</router-link>
+          <router-link to="/" class="SLink" exact>Home</router-link>
         </li>
         <li class="Item">
-          <router-link route :to="{name: 'tv'}" class="SLink">tv</router-link>
+          <router-link route :to="{name: 'tv'}" class="SLink" exact>tv</router-link>
         </li>
         <li class="Item">
-          <router-link route :to="{name: 'search'}" class="SLink">search</router-link>
+          <router-link route :to="{name: 'search'}" class="SLink" exact>search</router-link>
         </li>
       </ul>
     </div>

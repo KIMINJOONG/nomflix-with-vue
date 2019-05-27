@@ -1,18 +1,45 @@
 <template>
   <div class="home">
       <div class="Container">
-        <span class="Title"></span>
+        <span class="Title">nowplaying</span>
         <div class="Grid">
-          <Poster
-            v-for="(now, index) in nowPlaying"
-            v-bind:key="index"
-            :title="now.title"
-            :rating="now.vote_average"
-            :year="now.year"
-            :isMovie="true"
-            :imageUrl="now.poster_path"
-          />
+            <Poster
+                v-for="(movie, index) in nowPlaying"
+                v-bind:key="index"
+                :title="movie.title"
+                :rating="movie.vote_average"
+                :year="movie.year"
+                :isMovie="true"
+                :imageUrl="movie.poster_path"
+                :id="movie.id"
+            />
         </div>
+          <span class="Title">upcoming</span>
+          <div class="Grid">
+              <Poster
+                  v-for="(movie, index) in upcoming"
+                  v-bind:key="index"
+                  :title="movie.title"
+                  :rating="movie.vote_average"
+                  :year="movie.year"
+                  :isMovie="true"
+                  :imageUrl="movie.poster_path"
+                  :id="movie.id"
+              />
+          </div>
+          <span class="Title">popular</span>
+          <div class="Grid">
+              <Poster
+                  v-for="(movie, index) in popular"
+                  v-bind:key="index"
+                  :title="movie.title"
+                  :rating="movie.vote_average"
+                  :year="movie.year"
+                  :isMovie="true"
+                  :imageUrl="movie.poster_path"
+                  :id="movie.id"
+              />
+          </div>
       </div>
   </div>
 </template>
