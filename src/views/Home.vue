@@ -1,7 +1,7 @@
 <template>
   <div class="home">
 
-    <h1 @click="getMovie">{{home}}</h1>
+    <h1>{{home}}</h1>
     <p>{{nowPlaying}}</p>
     <p>{{upcoming}}</p>
     <p>{{popular}}</p>
@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import {mapState, mapActions} from "vuex";
+import {mapState} from "vuex";
 export default {
   name: 'home',
   data: () => ({
@@ -18,11 +18,8 @@ export default {
   computed:{
     ...mapState(["nowPlaying", "upcoming", "popular"])
   },
-  methods:{
-    ...mapActions(["getMovie"])
-  },
-  created() {
-
+  mounted() {
+    this.$store.dispatch("getMovie")
   }
 }
 </script>
