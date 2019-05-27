@@ -2,7 +2,7 @@
     <router-link route :to="{path: '/detail/12'}">
         <div class="Container">
             <div class="ImageContainer">
-                <div class="Image" v-bind:style="{ backgroundImage: 'url(' + imageUrl + ')' }">
+                <div class="Image" :style="{ 'background-image': 'url(https://image.tmdb.org/t/p/w300' + imageUrl + ')' }">
 
                 </div>
                 <span class="Rating">
@@ -51,6 +51,12 @@
         margin-bottom: 5px;
         position: relative;
 
+    }
+    .ImageContainer:hover > .Image{
+        opacity: 0.3;
+    }
+    .ImageContainer:hover > .Rating{
+        opacity: 1;
     }
     .Title{
         display: block;

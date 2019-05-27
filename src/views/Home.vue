@@ -7,7 +7,7 @@
             v-for="(now, index) in nowPlaying"
             v-bind:key="index"
             :title="now.title"
-            :rating="now.rating"
+            :rating="now.vote_average"
             :year="now.year"
             :isMovie="true"
             :imageUrl="now.poster_path"
