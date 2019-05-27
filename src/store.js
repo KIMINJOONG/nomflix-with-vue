@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {moviesApi} from "./api";
+import {moviesApi, tvApi} from "./api";
 
 Vue.use(Vuex)
 
@@ -10,13 +10,20 @@ export default new Vuex.Store({
     upcoming: null,
     popular: null,
     error: null,
-    loading: true
+    loading: true,
+    topRated: null,
+    airingToday: null
   },
   mutations: {
     getMovie(state, payload){
       state.nowPlaying = payload.nowPlaying;
       state.upcoming = payload.upcoming;
       state.popular = payload.popular;
+    },
+    getTv(state, payload){
+      state.topRated = payload.topRated;
+      state.popular = payload.popular;
+      state.airingToday = payload.airingToday;
     }
   },
   actions: {
@@ -44,6 +51,30 @@ export default new Vuex.Store({
         popular
       }
       commit("getMovie", movies);
+    },
+    async getTv({commit}) {
+      let tvs = null;
+      let topRated, popular, airingToday;
+      try{
+        ({
+          data: {results: topRated}
+        } = await tvApi.topRated());
+        ({
+          data: {results: popular}
+        } = await tvApi.popular());
+
+        ({
+          data: {results: airingToday}
+        } = await tvApi.airingToday());
+      }catch(e){
+        console.log(e);
+      }
+      tvs = {
+        topRated,
+        popular,
+        airingToday
+      }
+      commit("getTv", tvs);
     }
   }
 })
