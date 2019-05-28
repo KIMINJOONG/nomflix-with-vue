@@ -15,7 +15,7 @@
             {{title}}
             </span>
             <span class="Year">
-
+            {{year}}
             </span>
         </div>
     </router-link>

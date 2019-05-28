@@ -4,40 +4,40 @@
       <span class="Title">topRated</span>
       <div class="Grid">
         <Poster
-          v-for="(movie, index) in topRated"
+          v-for="(tv, index) in topRated"
           v-bind:key="index"
-          :title="movie.title"
-          :rating="movie.vote_average"
-          :year="movie.year"
+          :title="tv.name"
+          :rating="tv.vote_average"
+          :year="tv.first_air_date && tv.first_air_date.substring(0,4)"
           :isMovie="true"
-          :imageUrl="movie.poster_path"
-          :id="movie.id"
+          :imageUrl="tv.poster_path"
+          :id="tv.id"
         />
       </div>
       <span class="Title">popular</span>
       <div class="Grid">
         <Poster
-          v-for="(movie, index) in popular"
+          v-for="(tv, index) in popular"
           v-bind:key="index"
-          :title="movie.title"
-          :rating="movie.vote_average"
-          :year="movie.year"
+          :title="tv.title"
+          :rating="tv.vote_average"
+          :year="tv.first_air_date && tv.first_air_date.substring(0,4)"
           :isMovie="false"
-          :imageUrl="movie.poster_path"
-          :id="movie.id"
+          :imageUrl="tv.poster_path"
+          :id="tv.id"
         />
       </div>
       <span class="Title">airingToday</span>
       <div class="Grid">
         <Poster
-          v-for="(movie, index) in airingToday"
+          v-for="(tv, index) in airingToday"
           v-bind:key="index"
-          :title="movie.title"
-          :rating="movie.vote_average"
-          :year="movie.year"
+          :title="tv.title"
+          :rating="tv.vote_average"
+          :year="tv.first_air_date && tv.first_air_date.substring(0,4)"
           :isMovie="true"
-          :imageUrl="movie.poster_path"
-          :id="movie.id"
+          :imageUrl="tv.poster_path"
+          :id="tv.id"
         />
       </div>
     </div>
