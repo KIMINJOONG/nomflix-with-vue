@@ -1,6 +1,6 @@
 <template>
-    <div class="Container" v-if="loading">
-        <div class="Backdrop" v-if="result.backdrop_path !== null" :style="{ 'background-image': 'url(https://image.tmdb.org/t/p/original' + result.backdrop_path + ')' }">
+    <div class="Container" v-if="loading === true && result">
+        <div class="Backdrop" v-if="result.backdrop_path" :style="{ 'background-image': 'url(https://image.tmdb.org/t/p/original' + result.backdrop_path + ')' }">
         </div>
         <div class="Content">
             <div class="Cover" v-if="result.poster_path" :style="{ 'background-image': 'url(https://image.tmdb.org/t/p/original' + result.poster_path + ')' }">
@@ -20,15 +20,16 @@
 
             </div>
         </div>
-
     </div>
+    <Loader v-else />
 </template>
 
 <script>
     import {mapState} from "vuex";
+    import Loader from "../components/Loader";
     export default {
-        computed: {
-            ...mapState(["result", "loading"])
+        components: {
+            Loader
         },
         data: () => ({
             data: null
@@ -40,7 +41,10 @@
                 isMovie: this.$route.query.isMovie
             }
             this.$store.dispatch("getDetail", this.data)
-        }
+        },
+        computed: {
+            ...mapState(["result", "loading"])
+        },
     }
 </script>
 

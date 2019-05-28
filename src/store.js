@@ -125,14 +125,14 @@ export default new Vuex.Store({
         if(data.isMovie){
           ({data: result} = await moviesApi.movieDetail(data.id));
         }else {
-          ({data: result} = await  tvApi.showDetail(data.id));
+          ({data: result} = await tvApi.showDetail(data.id));
+        }
+        result = {
+          ...result, isMovie : data.isMovie
         }
       }catch (e) {
         console.log(e);
       }finally {
-        result = {
-          ...result, isMovie : data.isMovie
-        }
         commit("getDetail", result);
       }
     }
