@@ -15,7 +15,8 @@ export default new Vuex.Store({
     airingToday: null,
     results: null,
     tvResults: null,
-    result: null
+    result: null,
+    isMovie: true
   },
   mutations: {
     getMovie(state, payload){
@@ -35,6 +36,7 @@ export default new Vuex.Store({
     },
     getDetail(state, payload){
       state.result = payload;
+      state.isMovie = payload.isMovie
       state.loading = true;
     }
   },
@@ -119,6 +121,10 @@ export default new Vuex.Store({
       }catch (e) {
         console.log(e);
       }finally {
+        result = {
+          ...result, isMovie : data.isMovie
+        }
+        console.log(result);
         commit("getDetail", result);
       }
     }

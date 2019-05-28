@@ -9,7 +9,7 @@
           :title="tv.name"
           :rating="tv.vote_average"
           :year="tv.first_air_date && tv.first_air_date.substring(0,4)"
-          :isMovie="true"
+          :isMovie="false"
           :imageUrl="tv.poster_path"
           :id="tv.id"
         />
@@ -35,7 +35,7 @@
           :title="tv.title"
           :rating="tv.vote_average"
           :year="tv.first_air_date && tv.first_air_date.substring(0,4)"
-          :isMovie="true"
+          :isMovie="false"
           :imageUrl="tv.poster_path"
           :id="tv.id"
         />

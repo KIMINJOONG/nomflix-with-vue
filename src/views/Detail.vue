@@ -1,5 +1,5 @@
 <template>
-    <div class="Container" v-if="loading === true">
+    <div class="Container" v-if="loading">
         <div class="Backdrop" :style="{ 'background-image': 'url(https://image.tmdb.org/t/p/original' + result.backdrop_path + ')' }">
         </div>
         <div class="Content">
@@ -12,7 +12,7 @@
                 <div class="ItemContainer">
                     <span class="Item">{{result.release_date ? result.release_date.substring(0,4) : result.first_air_date.substring(0,4)}}</span>
                     <span class="Divider">•</span>
-                    <span class="Item">{{result.runtime ? result.runtime : result.episode_run_time[0]}} min</span>
+                    <span class="Item">{{result.runtime || result.runtime === 0 ? result.runtime : result.episode_run_time[0]}} min</span>
                     <span class="Divider">•</span>
                     <span class="Item" :key="genre.id" v-for="(genre, index) in result.genres">{{index === result.genres.length -1 ? genre.name : genre.name + ' / '}}  </span>
                 </div>
