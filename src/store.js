@@ -14,7 +14,8 @@ export default new Vuex.Store({
     topRated: null,
     airingToday: null,
     results: null,
-    tvResults: null
+    tvResults: null,
+    result: null
   },
   mutations: {
     getMovie(state, payload){
@@ -30,6 +31,10 @@ export default new Vuex.Store({
     searchByTerm(state, payload){
       state.results = payload.movieResults;
       state.tvResults = payload.tvResults;
+      state.loading = true;
+    },
+    getDetail(state, payload){
+      state.result = payload;
       state.loading = true;
     }
   },
@@ -102,6 +107,20 @@ export default new Vuex.Store({
         tvResults
       }
       commit("searchByTerm", results);
+    },
+    async getDetail ({commit}, data){
+      let result = null;
+      try{
+        if(data.isMovie){
+          ({data: result} = await moviesApi.movieDetail(data.id));
+        }else {
+          ({data: result} = await  tvApi.showDetail(data.id));
+        }
+      }catch (e) {
+        console.log(e);
+      }finally {
+        commit("getDetail", result);
+      }
     }
   }
 })

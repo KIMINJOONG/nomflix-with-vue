@@ -1,5 +1,5 @@
 <template>
-    <router-link route :to="{path: '/detail/' + id}">
+    <router-link route :to="{path: '/detail/' + id, query: {isMovie: isMovie}}">
         <div class="Container">
             <div class="ImageContainer">
                 <div class="Image" :style="{ 'background-image': 'url(https://image.tmdb.org/t/p/w300' + imageUrl + ')' }">
