@@ -1,6 +1,6 @@
 <template>
     <div class="Container" v-if="loading">
-        <div class="Backdrop" :style="{ 'background-image': 'url(https://image.tmdb.org/t/p/original' + result.backdrop_path + ')' }">
+        <div class="Backdrop" v-if="result.backdrop_path !== null" :style="{ 'background-image': 'url(https://image.tmdb.org/t/p/original' + result.backdrop_path + ')' }">
         </div>
         <div class="Content">
             <div class="Cover" v-if="result.poster_path" :style="{ 'background-image': 'url(https://image.tmdb.org/t/p/original' + result.poster_path + ')' }">
