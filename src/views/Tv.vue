@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home" v-if="loading === true">
     <div class="Container">
       <span class="Title">topRated</span>
       <div class="Grid">
@@ -42,20 +42,23 @@
       </div>
     </div>
   </div>
+    <Loader v-else/>
 </template>
 
 <script>
 import { mapState } from "vuex";
 import Poster from "../components/Poster";
+import Loader from "../components/Loader";
 export default {
   components: {
-    Poster
+    Poster,
+      Loader
   },
   data: () => ({
     tv: "Hello Tv"
   }),
   computed: {
-    ...mapState(["topRated", "popular", "airingToday"])
+    ...mapState(["topRated", "popular", "airingToday", "loading"])
   },
   mounted() {
     this.$store.dispatch("getTv");

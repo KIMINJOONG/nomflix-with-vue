@@ -23,11 +23,13 @@ export default new Vuex.Store({
       state.nowPlaying = payload.nowPlaying;
       state.upcoming = payload.upcoming;
       state.popular = payload.popular;
+      state.loading = true;
     },
     getTv(state, payload){
       state.topRated = payload.topRated;
       state.popular = payload.popular;
       state.airingToday = payload.airingToday;
+      state.loading =true;
     },
     searchByTerm(state, payload){
       state.results = payload.movieResults;
@@ -38,10 +40,14 @@ export default new Vuex.Store({
       state.result = payload;
       state.isMovie = payload.isMovie
       state.loading = true;
+    },
+    loadingFalse(state){
+      state.loading = false;
     }
   },
   actions: {
     async getMovie({commit}) {
+      commit("loadingFalse");
       let movies = null;
       let nowPlaying, upcoming, popular;
       try{
@@ -67,6 +73,7 @@ export default new Vuex.Store({
       commit("getMovie", movies);
     },
     async getTv({commit}) {
+      commit("loadingFalse");
       let tvs = null;
       let topRated, popular, airingToday;
       try{
@@ -91,6 +98,7 @@ export default new Vuex.Store({
       commit("getTv", tvs);
     },
     async searchByTerm ({commit}, searchTerm){
+      commit("loadingFalse");
       let movieResults, tvResults;
       try{
         ({
@@ -111,6 +119,7 @@ export default new Vuex.Store({
       commit("searchByTerm", results);
     },
     async getDetail ({commit}, data){
+      commit("loadingFalse");
       let result = null;
       try{
         if(data.isMovie){
@@ -124,7 +133,6 @@ export default new Vuex.Store({
         result = {
           ...result, isMovie : data.isMovie
         }
-        console.log(result);
         commit("getDetail", result);
       }
     }
